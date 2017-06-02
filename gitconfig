@@ -1,0 +1,26 @@
+[core]
+	autocrlf = input
+	pager = less -r
+	editor = vim
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
+	d = diff
+	dc = diff --cached
+	l = log --decorate --graph --format=fuller
+	cp = cherry-pick
+	la = log --all --decorate --graph --format=fuller
+	ff = merge --ff-only
+	deco = log --all --graph --decorate --simplify-by-decoration
+	patch = format-patch -1 --stdout
+	coff = "!git checkout $1 && git merge --ff-only @{u}"
+	amend = commit --amend
+[color]
+	ui = always
+[merge]
+	tool = meld
+[mergetool "meld"]
+	cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
+
