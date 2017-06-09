@@ -17,6 +17,9 @@
 	patch = format-patch -1 --stdout
 	coff = "!git checkout $1 && git merge --ff-only @{u}"
 	amend = commit --amend
+	ignore = update-index --assume-unchanged
+	unignore = update-index --no-assume-unchanged
+	ignored = !git ls-files -v | grep "^[[:lower:]]"
 [color]
 	ui = always
 [merge]
