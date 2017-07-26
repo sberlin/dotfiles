@@ -5,9 +5,13 @@
 ### Completion r
 Adds completion for custom script [r](#r-is-for-run)
 
+Installation:
+```sh
+$ make complete_r
+```
+
 Usage:
 ```sh
-$ cat bashrc >> ~/.bashrc
 $ r ged[tab][tab]
 gedbar          gedfoo          gedit
 $ r gedit sam[tab][tab]
@@ -19,16 +23,14 @@ Executable to detach an application completely from shell with nohup.
 
 Usage:
 ```sh
-$ cp r <bin of your choice>
 $ r gedit sample.txt
 ```
 
 ## gitconfig
 Useful configurations for Git
 
-Usage:
+Installation:
 ```sh
-$ cat gitconfig >> ~/.gitconfig
+$ make gitconfig
 ```
-Copy into `~` to enable for a specific user
 
