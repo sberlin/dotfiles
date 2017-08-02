@@ -1,18 +1,16 @@
 default: install
 
 .PHONY: install clean \
-	complete_r complete_r_clean \
-	gitconfig gitconfig_clean \
-	git_user_info git_user_info_clean \
-	idea idea_clean
+	complete_r clean_complete_r \
+	gitconfig clean_gitconfig \
+	git_user_info clean_git_user_info \
+	idea clean_idea
 
 USER_WORKSPACE=/opt/workspace/$(shell id --user --name)
 
-.PHONY: install clean complete_r gitconfig clean_complete_r clean_gitconfig
+install: complete_r gitconfig git_user_info idea
 
-install: complete_r gitconfig
-
-clean: clean_complete_r clean_gitconfig
+clean: clean_complete_r clean_gitconfig clean_git_user_info clean_idea
 
 complete_r:
 	mkdir -p ~/bin
