@@ -1,5 +1,13 @@
 default: install
 
+.PHONY: install clean \
+	complete_r complete_r_clean \
+	gitconfig gitconfig_clean \
+	git_user_info git_user_info_clean \
+	idea idea_clean
+
+USER_WORKSPACE=/opt/workspace/$(shell id --user --name)
+
 .PHONY: install clean complete_r gitconfig clean_complete_r clean_gitconfig
 
 install: complete_r gitconfig
@@ -34,4 +42,14 @@ git_user_info:
 clean_git_user_info:
 	git config --global --unset user.name
 	git config --global --unset user.email
+
+idea:
+	mkdir -p $(USER_WORKSPACE)/opt/ && \
+	    wget --output-document=$(USER_WORKSPACE)/opt/idea.tar.gz \
+	        https://download.jetbrains.com/idea/ideaIU-2017.2.1.tar.gz && \
+	    tar xzf $(USER_WORKSPACE)/opt/idea.tar.gz -C $(USER_WORKSPACE)/opt/ && \
+	    rm $(USER_WORKSPACE)/opt/idea.tar.gz
+
+clean_idea:
+	rm -rf $(shell dirname $(shell dirname $(USER_WORKSPACE)/opt/*/bin/idea.sh))
 
