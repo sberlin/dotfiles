@@ -1,16 +1,16 @@
 default: install
 
 .PHONY: install clean \
-	complete_r clean_complete_r \
-	gitconfig clean_gitconfig \
-	git_user_info clean_git_user_info \
-	idea clean_idea
+	complete_r complete_r_clean \
+	gitconfig gitconfig_clean \
+	git_user_info git_user_info_clean \
+	idea idea_clean
 
 USER_WORKSPACE=/opt/workspace/$(shell id --user --name)
 
 install: complete_r gitconfig git_user_info idea
 
-clean: clean_complete_r clean_gitconfig clean_git_user_info clean_idea
+clean: complete_r_clean gitconfig_clean git_user_info_clean idea_clean
 
 complete_r:
 	mkdir -p ~/bin
@@ -18,7 +18,7 @@ complete_r:
 	chmod +x ~/bin/r
 	cat r_bashrc >> ~/.bashrc
 
-clean_complete_r:
+complete_r_clean:
 	rm -f ~/bin/r
 	@echo "Please remove the following block from ~/.bashrc manually"
 	@echo "---------------------------------------------------------"
@@ -29,7 +29,7 @@ gitconfig:
 	grep --extended-regexp --only-matching '^([^ ]+) (.+)$$' gitconfig \
 		| xargs --verbose --no-run-if-empty --max-lines=1 git config --global
 
-clean_gitconfig:
+gitconfig_clean:
 	grep --extended-regexp --only-matching '^([^ ]+)' gitconfig \
 		| xargs --verbose --no-run-if-empty --max-lines=1 git config --global --unset
 
@@ -37,7 +37,7 @@ git_user_info:
 	test -n "$(USERNAME)" && git config --global user.name $(USERNAME)
 	test -n "$(USERMAIL)" && git config --global user.email $(USERMAIL)
 
-clean_git_user_info:
+git_user_info_clean:
 	git config --global --unset user.name
 	git config --global --unset user.email
 
@@ -48,6 +48,6 @@ idea:
 	    tar xzf $(USER_WORKSPACE)/opt/idea.tar.gz -C $(USER_WORKSPACE)/opt/ && \
 	    rm $(USER_WORKSPACE)/opt/idea.tar.gz
 
-clean_idea:
+idea_clean:
 	rm -rf $(shell dirname $(shell dirname $(USER_WORKSPACE)/opt/*/bin/idea.sh))
 
