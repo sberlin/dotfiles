@@ -27,3 +27,11 @@ clean_gitconfig:
 	grep --extended-regexp --only-matching '^([^ ]+)' gitconfig \
 		| xargs --verbose --no-run-if-empty --max-lines=1 git config --global --unset
 
+git_user_info:
+	test -n "$(USERNAME)" && git config --global user.name $(USERNAME)
+	test -n "$(USERMAIL)" && git config --global user.email $(USERMAIL)
+
+clean_git_user_info:
+	git config --global --unset user.name
+	git config --global --unset user.email
+
