@@ -1,16 +1,17 @@
 default: install
 
 .PHONY: install clean \
-	complete_r complete_r_clean \
-	gitconfig gitconfig_clean \
-	git_user_info git_user_info_clean \
-	idea idea_clean
+        complete_r complete_r_clean \
+        gitconfig gitconfig_clean \
+        git_user_info git_user_info_clean \
+        idea idea_clean \
+        unity_settings unity_settings_clean
 
 USER_WORKSPACE=/opt/workspace/$(shell id --user --name)
 
-install: complete_r gitconfig git_user_info idea
+install: complete_r gitconfig git_user_info idea unity_settings
 
-clean: complete_r_clean gitconfig_clean git_user_info_clean idea_clean
+clean: complete_r_clean gitconfig_clean git_user_info_clean idea_clean unity_settings_clean
 
 complete_r:
 	mkdir -p ~/bin
@@ -50,4 +51,14 @@ idea:
 
 idea_clean:
 	rm -rf $(shell dirname $(shell dirname $(USER_WORKSPACE)/opt/*/bin/idea.sh))
+
+unity_settings:
+	command -v gsettings &> /dev/null || ( echo "Install gsettings first" && exit )
+	grep --extended-regexp --only-matching '^([^ ]+) ([^ ]+) (.*)$$' unity_settings | \
+	    xargs --verbose --no-run-if-empty --max-lines=1 gsettings set
+
+unity_settings_clean:
+	command -v gsettings &> /dev/null || ( echo "Install gsettings first" && exit )
+	grep --extended-regexp --only-matching '^([^ ]+) ([^ ]+)' unity_settings | \
+	    xargs --verbose --no-run-if-empty --max-lines=1 gsettings reset
 
