@@ -14,13 +14,13 @@ install: complete_r gitconfig git_user_info idea unity_settings
 clean: complete_r_clean gitconfig_clean git_user_info_clean idea_clean unity_settings_clean
 
 complete_r:
-	mkdir -p ~/bin
+	mkdir --parents ~/bin
 	cp r ~/bin/
 	chmod +x ~/bin/r
 	cat r_bashrc >> ~/.bashrc
 
 complete_r_clean:
-	rm -f ~/bin/r
+	rm --force ~/bin/r
 	@echo "Please remove the following block from ~/.bashrc manually"
 	@echo "---------------------------------------------------------"
 	cat r_bashrc
@@ -43,14 +43,14 @@ git_user_info_clean:
 	git config --global --unset user.email
 
 idea:
-	mkdir -p $(USER_WORKSPACE)/opt/ && \
-	    wget --output-document=$(USER_WORKSPACE)/opt/idea.tar.gz \
+	mkdir --parents $(USER_WORKSPACE)/opt/ && \
+	    wget --progress=dot:giga --output-document=$(USER_WORKSPACE)/opt/idea.tar.gz \
 	        https://download.jetbrains.com/idea/ideaIU-2017.2.1.tar.gz && \
-	    tar xzf $(USER_WORKSPACE)/opt/idea.tar.gz -C $(USER_WORKSPACE)/opt/ && \
+	    tar xzf $(USER_WORKSPACE)/opt/idea.tar.gz --directory $(USER_WORKSPACE)/opt/ && \
 	    rm $(USER_WORKSPACE)/opt/idea.tar.gz
 
 idea_clean:
-	rm -rf $(shell dirname $(shell dirname $(USER_WORKSPACE)/opt/*/bin/idea.sh))
+	rm --recursive --force $(shell dirname $(shell dirname $(USER_WORKSPACE)/opt/*/bin/idea.sh))
 
 unity_settings:
 	command -v gsettings &> /dev/null || ( echo "Install gsettings first" && exit )
