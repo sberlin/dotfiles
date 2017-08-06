@@ -1,33 +1,27 @@
-[core]
-	autocrlf = input
-	pager = less -r
-	editor = vim
-[alias]
-	co = checkout
-	br = branch
-	ci = commit
-	st = status
-	d = diff
-	dc = diff --cached
-	l = log --decorate --graph --format=fuller
-	cp = cherry-pick
-	la = log --all --decorate --graph --format=fuller
-	ff = merge --ff-only
-	deco = log --all --graph --decorate --simplify-by-decoration
-	patch = format-patch -1 --stdout
-	coff = "!git checkout $1 && git merge --ff-only @{u}"
-	amend = commit --amend
-	ignore = update-index --assume-unchanged
-	unignore = update-index --no-assume-unchanged
-	ignored = !git ls-files -v | grep "^[[:lower:]]"
-	lst = log --decorate --graph --format=fuller --name-status
-	last = log --all --decorate --graph --format=fuller --name-status
-	f = fetch
-[color]
-	ui = always
-[merge]
-	tool = meld
-[mergetool "meld"]
-	cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
-[i18n]
-	commitencoding = utf8
+core.autocrlf 'input'
+core.pager 'less -r'
+core.editor 'vim'
+alias.co 'checkout'
+alias.br 'branch'
+alias.ci 'commit'
+alias.st 'status'
+alias.d 'diff'
+alias.dc 'diff --cached'
+alias.l 'log --decorate --graph --format=fuller'
+alias.cp 'cherry-pick'
+alias.la 'log --all --decorate --graph --format=fuller'
+alias.ff 'merge --ff-only'
+alias.deco 'log --all --graph --decorate --simplify-by-decoration'
+alias.patch 'format-patch -1 --stdout'
+alias.coff '!git checkout $1 && git merge --ff-only @{u}'
+alias.amend 'commit --amend'
+alias.ignore 'update-index --assume-unchanged'
+alias.unignore 'update-index --no-assume-unchanged'
+alias.ignored '!git ls-files -v | grep "^[[:lower:]]"'
+alias.lst 'log --decorate --graph --format=fuller --name-status'
+alias.last 'log --all --decorate --graph --format=fuller --name-status'
+alias.f 'fetch'
+color.ui 'always'
+merge.tool 'meld'
+mergetool.meld.cmd 'meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"'
+i18n.commitencoding 'utf8'

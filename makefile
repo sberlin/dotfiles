@@ -20,10 +20,10 @@ clean_complete_r:
 	@echo "---------------------------------------------------------"
 
 gitconfig:
-	cp gitconfig ~/.gitconfig_custom
-	git config --global include.path '~/.gitconfig_custom'
+	grep --extended-regexp --only-matching '^([^ ]+) (.+)$$' gitconfig \
+		| xargs --verbose --no-run-if-empty --max-lines=1 git config --global
 
 clean_gitconfig:
-	git config --global --unset include.path || true
-	rm -f ~/.gitconfig_custom
+	grep --extended-regexp --only-matching '^([^ ]+)' gitconfig \
+		| xargs --verbose --no-run-if-empty --max-lines=1 git config --global --unset
 
