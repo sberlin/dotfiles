@@ -47,7 +47,8 @@ idea:
 	    wget --progress=dot:giga --output-document=$(USER_WORKSPACE)/opt/idea.tar.gz \
 	        https://download.jetbrains.com/idea/ideaIU-2017.2.1.tar.gz && \
 	    tar xzf $(USER_WORKSPACE)/opt/idea.tar.gz --directory $(USER_WORKSPACE)/opt/ && \
-	    rm $(USER_WORKSPACE)/opt/idea.tar.gz
+	    rm --force $(USER_WORKSPACE)/opt/idea.tar.gz && \
+	    ln --verbose --symbolic --force $(USER_WORKSPACE)/opt/*/bin/idea.sh $(HOME)/bin/idea.sh
 
 idea_clean:
 	rm --recursive --force $(shell dirname $(shell dirname $(USER_WORKSPACE)/opt/*/bin/idea.sh))
