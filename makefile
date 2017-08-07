@@ -17,22 +17,22 @@ clean: complete_r_clean gitconfig_clean git_user_info_clean unity_settings_clean
 
 ifeq ($(findstring $(HOME)/bin, $(PATH)),)
 _user_bin_add:
-	mkdir --parents ~/bin
+	mkdir --parents $(HOME)/bin
 	@echo "Prefix PATH with $(HOME)/bin"
-	echo -e '$(USER_BIN_INCLUDE)' >> ~/.bashrc
+	echo -e '$(USER_BIN_INCLUDE)' >> $(HOME)/.bashrc
 else
 _user_bin_add:
 	@echo "Directory $(HOME)/bin already in PATH"
 endif
 
 complete_r: _user_bin_add
-	cp r ~/bin/
-	chmod +x ~/bin/r
-	cat r_bashrc >> ~/.bashrc
+	cp r $(HOME)/bin/
+	chmod +x $(HOME)/bin/r
+	cat r_bashrc >> $(HOME)/.bashrc
 
 complete_r_clean:
-	rm --force ~/bin/r
-	@echo "Please remove the following block from ~/.bashrc manually"
+	rm --force $(HOME)/bin/r
+	@echo "Please remove the following block from $(HOME)/.bashrc manually"
 	@echo "---------------------------------------------------------"
 	cat r_bashrc
 	@echo -e "$(USER_BIN_INCLUDE)"
@@ -64,8 +64,8 @@ idea: _user_bin_add
 
 idea_clean:
 	rm --recursive --force $(shell dirname $(shell dirname $(USER_WORKSPACE)/opt/*/bin/idea.sh))
-	rm --force ~/bin/idea.sh
-	@echo "Please remove the following block from ~/.bashrc manually"
+	rm --force $(HOME)/bin/idea.sh
+	@echo "Please remove the following block from $(HOME)/.bashrc manually"
 	@echo "---------------------------------------------------------"
 	@echo -e "$(USER_BIN_INCLUDE)"
 	@echo "---------------------------------------------------------"
