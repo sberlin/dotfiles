@@ -27,11 +27,11 @@ complete_r_clean:
 	@echo "---------------------------------------------------------"
 
 gitconfig:
-	grep --extended-regexp --only-matching '^([^ ]+) (.+)$$' gitconfig \
+	sed --regexp-extended 's/^([^=]+)=(.+)$$/\1 \2/g' gitconfig \
 		| xargs --verbose --no-run-if-empty --max-lines=1 git config --global
 
 gitconfig_clean:
-	grep --extended-regexp --only-matching '^([^ ]+)' gitconfig \
+	sed --regexp-extended 's/^([^=]+)=(.+)$$/\1/g' gitconfig \
 		| xargs --verbose --no-run-if-empty --max-lines=1 git config --global --unset
 
 git_user_info:
