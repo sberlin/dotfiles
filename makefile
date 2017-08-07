@@ -7,8 +7,8 @@ default: install
         idea idea_clean \
         unity_settings unity_settings_clean
 
+SHELL=/bin/bash
 USER_WORKSPACE=/opt/workspace/$(shell id --user --name)
-
 USER_BIN_INCLUDE=if [ -d "$$HOME/bin" ] ; then\n    export PATH="$$HOME/bin:$$PATH"\nfi
 
 install: complete_r gitconfig git_user_info unity_settings idea
