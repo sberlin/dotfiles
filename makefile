@@ -9,12 +9,23 @@ default: install
 
 USER_WORKSPACE=/opt/workspace/$(shell id --user --name)
 
+USER_BIN_INCLUDE=if [ -d "$$HOME/bin" ] ; then\n    export PATH="$$HOME/bin:$$PATH"\nfi
+
 install: complete_r gitconfig git_user_info unity_settings idea
 
 clean: complete_r_clean gitconfig_clean git_user_info_clean unity_settings_clean idea_clean
 
-complete_r:
+ifeq ($(findstring $(HOME)/bin, $(PATH)),)
+_user_bin_add:
 	mkdir --parents ~/bin
+	@echo "Prefix PATH with $(HOME)/bin"
+	echo -e '$(USER_BIN_INCLUDE)' >> ~/.bashrc
+else
+_user_bin_add:
+	@echo "Directory $(HOME)/bin already in PATH"
+endif
+
+complete_r: _user_bin_add
 	cp r ~/bin/
 	chmod +x ~/bin/r
 	cat r_bashrc >> ~/.bashrc
@@ -24,6 +35,7 @@ complete_r_clean:
 	@echo "Please remove the following block from ~/.bashrc manually"
 	@echo "---------------------------------------------------------"
 	cat r_bashrc
+	@echo -e "$(USER_BIN_INCLUDE)"
 	@echo "---------------------------------------------------------"
 
 gitconfig:
@@ -42,7 +54,7 @@ git_user_info_clean:
 	git config --global --unset user.name
 	git config --global --unset user.email
 
-idea:
+idea: _user_bin_add
 	mkdir --parents $(USER_WORKSPACE)/opt/ && \
 	    wget --progress=dot:giga --output-document=$(USER_WORKSPACE)/opt/idea.tar.gz \
 	        https://download.jetbrains.com/idea/ideaIU-2017.2.1.tar.gz && \
@@ -52,6 +64,11 @@ idea:
 
 idea_clean:
 	rm --recursive --force $(shell dirname $(shell dirname $(USER_WORKSPACE)/opt/*/bin/idea.sh))
+	rm --force ~/bin/idea.sh
+	@echo "Please remove the following block from ~/.bashrc manually"
+	@echo "---------------------------------------------------------"
+	@echo -e "$(USER_BIN_INCLUDE)"
+	@echo "---------------------------------------------------------"
 
 unity_settings:
 	command -v gsettings &> /dev/null || ( echo "Install gsettings first" && exit )

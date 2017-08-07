@@ -16,3 +16,4 @@ _r()
 }
 
 complete -F _r r
+
