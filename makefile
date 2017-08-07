@@ -9,9 +9,9 @@ default: install
 
 USER_WORKSPACE=/opt/workspace/$(shell id --user --name)
 
-install: complete_r gitconfig git_user_info idea unity_settings
+install: complete_r gitconfig git_user_info unity_settings idea
 
-clean: complete_r_clean gitconfig_clean git_user_info_clean idea_clean unity_settings_clean
+clean: complete_r_clean gitconfig_clean git_user_info_clean unity_settings_clean idea_clean
 
 complete_r:
 	mkdir --parents ~/bin
