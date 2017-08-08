@@ -24,18 +24,20 @@ _user_bin_add:
 	@echo "Directory $(HOME)/bin already in PATH"
 endif
 
+_clean_bashrc:
+	@echo "Please remove the following block from $(HOME)/.bashrc manually"
+	@echo "---------------------------------------------------------"
+	@cat "$(BASHRC_FILES)"
+	@echo "---------------------------------------------------------"
+
 complete_r: _user_bin_add
 	cp r $(HOME)/bin/
 	chmod +x $(HOME)/bin/r
 	cat r_bashrc >> $(HOME)/.bashrc
 
-complete_r_clean:
+complete_r_clean: BASHRC_FILES="bin_bashrc r_bashrc"
+complete_r_clean: _clean_bashrc
 	rm --force $(HOME)/bin/r
-	@echo "Please remove the following block from $(HOME)/.bashrc manually"
-	@echo "---------------------------------------------------------"
-	cat r_bashrc
-	cat bin_bashrc
-	@echo "---------------------------------------------------------"
 
 gitconfig:
 	sed --regexp-extended 's/^([^=]+)=(.+)$$/\1 \2/g' gitconfig \
@@ -61,13 +63,10 @@ idea: _user_bin_add
 	    rm --force $(USER_WORKSPACE)/opt/idea.tar.gz && \
 	    ln --verbose --symbolic --force $(USER_WORKSPACE)/opt/*/bin/idea.sh $(HOME)/bin/idea.sh
 
-idea_clean:
+idea_clean: BASHRC_FILES="bin_bashrc"
+idea_clean: _clean_bashrc
 	rm --recursive --force $(shell dirname $(shell dirname $(USER_WORKSPACE)/opt/*/bin/idea.sh))
 	rm --force $(HOME)/bin/idea.sh
-	@echo "Please remove the following block from $(HOME)/.bashrc manually"
-	@echo "---------------------------------------------------------"
-	cat bin_bashrc
-	@echo "---------------------------------------------------------"
 
 unity_settings:
 	command -v gsettings &> /dev/null || ( echo "Install gsettings first" && exit )
