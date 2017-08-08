@@ -9,7 +9,6 @@ default: install
 
 SHELL=/bin/bash
 USER_WORKSPACE=/opt/workspace/$(shell id --user --name)
-USER_BIN_INCLUDE=if [ -d "$$HOME/bin" ] ; then\n    export PATH="$$HOME/bin:$$PATH"\nfi
 
 install: complete_r gitconfig git_user_info unity_settings idea
 
@@ -19,7 +18,7 @@ ifeq ($(findstring $(HOME)/bin, $(PATH)),)
 _user_bin_add:
 	mkdir --parents $(HOME)/bin
 	@echo "Prefix PATH with $(HOME)/bin"
-	echo -e '$(USER_BIN_INCLUDE)' >> $(HOME)/.bashrc
+	cat bin_bashrc >> $(HOME)/.bashrc
 else
 _user_bin_add:
 	@echo "Directory $(HOME)/bin already in PATH"
@@ -35,7 +34,7 @@ complete_r_clean:
 	@echo "Please remove the following block from $(HOME)/.bashrc manually"
 	@echo "---------------------------------------------------------"
 	cat r_bashrc
-	@echo -e "$(USER_BIN_INCLUDE)"
+	cat bin_bashrc
 	@echo "---------------------------------------------------------"
 
 gitconfig:
@@ -67,7 +66,7 @@ idea_clean:
 	rm --force $(HOME)/bin/idea.sh
 	@echo "Please remove the following block from $(HOME)/.bashrc manually"
 	@echo "---------------------------------------------------------"
-	@echo -e "$(USER_BIN_INCLUDE)"
+	cat bin_bashrc
 	@echo "---------------------------------------------------------"
 
 unity_settings:
