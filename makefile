@@ -1,18 +1,29 @@
 default: install
 
 .PHONY: install clean \
+        server_install server_clean \
+        desktop_install desktop_clean \
         complete_r complete_r_clean \
         gitconfig gitconfig_clean \
         git_user_info git_user_info_clean \
         idea idea_clean \
-        unity_settings unity_settings_clean
+        unity_settings unity_settings_clean \
+        _user_bin_add _clean_bashrc
 
 SHELL=/bin/bash
 USER_WORKSPACE=/opt/workspace/$(shell id --user --name)
 
-install: complete_r gitconfig git_user_info unity_settings idea
+install: server_install
 
-clean: complete_r_clean gitconfig_clean git_user_info_clean unity_settings_clean idea_clean
+server_install: complete_r gitconfig git_user_info
+
+desktop_install: unity_settings idea
+
+clean: server_clean
+
+server_clean: complete_r_clean gitconfig_clean git_user_info_clean
+
+desktop_clean: unity_settings_clean idea_clean
 
 ifeq ($(findstring $(HOME)/bin, $(PATH)),)
 _user_bin_add:
