@@ -3,6 +3,7 @@ Each make target comes with a corresponding suffixed clean target, though cleani
 
 ## Targets
 install/server_install:
+* [tmux](#tmux)
 * [complete_r](#r-is-for-run)
 * [gitconfig](#gitconfig)
 * [git_user_info](#git-user-info)
@@ -10,6 +11,21 @@ install/server_install:
 desktop_install:
 * [unity_settings](#unity-settings)
 * [idea](#intellij-idea)
+
+## tmux
+Different configurations to improve working with [tmux](https://tmux.github.io)
+
+Sources:
+* [The Tao of tmux](https://leanpub.com/the-tao-of-tmux/read)
+* Various Stack Overflow pages
+* Terminal habits
+
+Made to work with [KiTTY](http://www.9bis.net/kitty), a fork of [PuTTY](http://www.putty.org) to use with Windows. A gist for the required configuration will be added soon.
+
+### Installation
+```sh
+$ make tmux
+```
 
 ## r is for run
 Executable to detach an application completely from shell with nohup. Also creates a symbolic link in `~/bin` and adds it to your path.

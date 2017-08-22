@@ -3,6 +3,7 @@ default: install
 .PHONY: install clean \
         server_install server_clean \
         desktop_install desktop_clean \
+	tmux tmux_clean \
         complete_r complete_r_clean \
         gitconfig gitconfig_clean \
         git_user_info git_user_info_clean \
@@ -15,13 +16,13 @@ USER_WORKSPACE=/opt/workspace/$(shell id --user --name)
 
 install: server_install
 
-server_install: complete_r gitconfig git_user_info
+server_install: tmux complete_r gitconfig git_user_info
 
 desktop_install: unity_settings idea
 
 clean: server_clean
 
-server_clean: complete_r_clean gitconfig_clean git_user_info_clean
+server_clean: tmux_clean complete_r_clean gitconfig_clean git_user_info_clean
 
 desktop_clean: unity_settings_clean idea_clean
 
@@ -40,6 +41,14 @@ _clean_bashrc:
 	@echo "---------------------------------------------------------"
 	@cat "$(BASHRC_FILES)"
 	@echo "---------------------------------------------------------"
+
+tmux:
+	cp tmux.conf ~/.tmux-import.conf
+	echo "source-file ~/.tmux-import.conf" >> ~/.tmux.conf
+
+tmux_clean:
+	sed --in-place 's#^source-file ~/.tmux-import.conf$$##g' ~/.tmux.conf
+	rm --force ~/.tmux-import.conf
 
 complete_r: _user_bin_add
 	cp r $(HOME)/bin/
