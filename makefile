@@ -4,6 +4,7 @@ default: install
         server_install server_clean \
         desktop_install desktop_clean \
 	tmux tmux_clean \
+	tmux_solarized tmux_solarized_clean \
         complete_r complete_r_clean \
         gitconfig gitconfig_clean \
         git_user_info git_user_info_clean \
@@ -16,13 +17,13 @@ USER_WORKSPACE=/opt/workspace/$(shell id --user --name)
 
 install: server_install
 
-server_install: tmux complete_r gitconfig git_user_info
+server_install: tmux tmux_solarized complete_r gitconfig git_user_info
 
 desktop_install: unity_settings idea
 
 clean: server_clean
 
-server_clean: tmux_clean complete_r_clean gitconfig_clean git_user_info_clean
+server_clean: tmux_clean tmux_solarized_clean complete_r_clean gitconfig_clean git_user_info_clean
 
 desktop_clean: unity_settings_clean idea_clean
 
@@ -49,6 +50,24 @@ tmux:
 tmux_clean:
 	sed --in-place 's#^source-file ~/.tmux-import.conf$$##g' ~/.tmux.conf
 	rm --force ~/.tmux-import.conf
+
+tmux_solarized:
+ifeq ($(USERNAME),)
+	wget --output-document ~/.tmux-solarized.conf --no-verbose \
+	    "https://raw.githubusercontent.com/seebi/tmux-colors-solarized/master/tmuxcolors-256.conf"
+else
+	wget --output-document ~/.tmux-solarized.conf --no-verbose \
+	    "https://raw.githubusercontent.com/$(USERNAME)/tmux-colors-solarized/master/tmuxcolors-256.conf"
+endif
+	echo "source-file ~/.tmux-solarized.conf" >> ~/.tmux.conf
+	echo "alias tmux=\"tmux -2\"" >> ~/.bashrc
+	@echo "Restart your tmux with 'tmux kill-server' to reload configuration"
+
+tmux_solarized_clean:
+	sed --in-place 's#^source-file ~/.tmux-solarized.conf$$##g' ~/.tmux.conf
+	sed --in-place 's#^alias tmux="tmux -2"$$##g' ~/.bashrc
+	rm --force ~/.tmux-solarized.conf
+	@echo "Restart your tmux with 'tmux kill-server' to reload configuration"
 
 complete_r: _user_bin_add
 	cp r $(HOME)/bin/

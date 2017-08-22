@@ -4,6 +4,7 @@ Each make target comes with a corresponding suffixed clean target, though cleani
 ## Targets
 install/server_install:
 * [tmux](#tmux)
+* [tmux](#tmux-solarized)
 * [complete_r](#r-is-for-run)
 * [gitconfig](#gitconfig)
 * [git_user_info](#git-user-info)
@@ -25,6 +26,18 @@ Made to work with [KiTTY](http://www.9bis.net/kitty), a fork of [PuTTY](http://w
 ### Installation
 ```sh
 $ make tmux
+```
+
+## tmux Solarized
+Use tmux with the famous theme [Solarized](http://ethanschoonover.com/solarized)
+
+Check out the implementations for various tools at [altercation/solarized](https://github.com/altercation/solarized)
+
+Made to work with [KiTTY](http://www.9bis.net/kitty), a fork of [PuTTY](http://www.putty.org) to use with Windows. A gist for the required configuration will be added soon.
+
+### Installation
+```sh
+$ make tmux_solarized
 ```
 
 ## r is for run
