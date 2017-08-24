@@ -21,7 +21,7 @@ Sources:
 * Various Stack Overflow pages
 * Terminal habits
 
-Made to work with [KiTTY](http://www.9bis.net/kitty), a fork of [PuTTY](http://www.putty.org) to use with Windows. A gist for the required configuration will be added soon.
+Made to work with [KiTTY](http://www.9bis.net/kitty), a fork of [PuTTY](http://www.putty.org) to use with Windows. The necessary session options are documented in [this gist](https://gist.github.com/sberlin/cc71df9caf9d1b53219a2c30da29363d).
 
 ### Installation
 ```sh
@@ -33,7 +33,7 @@ Use tmux with the famous theme [Solarized](http://ethanschoonover.com/solarized)
 
 Check out the implementations for various tools at [altercation/solarized](https://github.com/altercation/solarized)
 
-Made to work with [KiTTY](http://www.9bis.net/kitty), a fork of [PuTTY](http://www.putty.org) to use with Windows. A gist for the required configuration will be added soon.
+Made to work with [KiTTY](http://www.9bis.net/kitty), a fork of [PuTTY](http://www.putty.org) to use with Windows. The necessary session options are documented in [this gist](https://gist.github.com/sberlin/cc71df9caf9d1b53219a2c30da29363d).
 
 ### Installation
 ```sh
