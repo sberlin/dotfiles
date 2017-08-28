@@ -3,8 +3,9 @@ default: install
 .PHONY: install clean \
         server_install server_clean \
         desktop_install desktop_clean \
-	tmux tmux_clean \
-	tmux_solarized tmux_solarized_clean \
+        ssh ssh_clean \
+        tmux tmux_clean \
+        tmux_solarized tmux_solarized_clean \
         complete_r complete_r_clean \
         gitconfig gitconfig_clean \
         git_user_info git_user_info_clean \
@@ -17,13 +18,13 @@ USER_WORKSPACE=/opt/workspace/$(shell id --user --name)
 
 install: server_install
 
-server_install: tmux tmux_solarized complete_r gitconfig git_user_info
+server_install: ssh tmux tmux_solarized complete_r gitconfig git_user_info
 
 desktop_install: unity_settings idea
 
 clean: server_clean
 
-server_clean: tmux_clean tmux_solarized_clean complete_r_clean gitconfig_clean git_user_info_clean
+server_clean: ssh_clean tmux_clean tmux_solarized_clean complete_r_clean gitconfig_clean git_user_info_clean
 
 desktop_clean: unity_settings_clean idea_clean
 
@@ -42,6 +43,12 @@ _clean_bashrc:
 	@echo "---------------------------------------------------------"
 	@cat "$(BASHRC_FILES)"
 	@echo "---------------------------------------------------------"
+
+ssh:
+	ssh-keygen -q -t rsa -b 4096 -N "" -f ~/.ssh/id_rsa
+
+ssh_clean:
+	rm --force ~/.ssh/id_rsa ~/.ssh/id_rsa.pub
 
 tmux:
 	cp tmux.conf ~/.tmux-import.conf
