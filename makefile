@@ -30,7 +30,6 @@ desktop_clean: unity_settings_clean idea_clean
 
 ifeq ($(findstring $(HOME)/bin, $(PATH)),)
 _user_bin_add:
-	mkdir --parents $(HOME)/bin
 	@echo "Prefix PATH with $(HOME)/bin"
 	cat bin_bashrc >> $(HOME)/.bashrc
 else
@@ -77,6 +76,7 @@ tmux_solarized_clean:
 	@echo "Restart your tmux with 'tmux kill-server' to reload configuration"
 
 complete_r: _user_bin_add
+	mkdir --parents $(HOME)/bin
 	cp r $(HOME)/bin/
 	chmod +x $(HOME)/bin/r
 	cat r_bashrc >> $(HOME)/.bashrc
