@@ -11,7 +11,7 @@ default: install
         git_user_info git_user_info_clean \
         idea idea_clean \
         unity_settings unity_settings_clean \
-        _user_bin_add _clean_bashrc
+        _user_bin_add _clean_file
 
 SHELL=/bin/bash
 USER_WORKSPACE=/opt/workspace/$(shell id --user --name)
@@ -37,10 +37,10 @@ _user_bin_add:
 	@echo "Directory $(HOME)/bin already in PATH"
 endif
 
-_clean_bashrc:
-	@echo "Please remove the following block from $(HOME)/.bashrc manually"
+_clean_file:
+	@echo "Please remove the following blocks manually"
 	@echo "---------------------------------------------------------"
-	@cat "$(BASHRC_FILES)"
+	@tail --verbose --lines=+1 -- $(FILES)
 	@echo "---------------------------------------------------------"
 
 ssh:
@@ -81,8 +81,8 @@ complete_r: _user_bin_add
 	chmod +x $(HOME)/bin/r
 	cat r_bashrc >> $(HOME)/.bashrc
 
-complete_r_clean: BASHRC_FILES="bin_bashrc r_bashrc"
-complete_r_clean: _clean_bashrc
+complete_r_clean: FILES="bin_bashrc r_bashrc"
+complete_r_clean: _clean_file
 	rm --force $(HOME)/bin/r
 
 gitconfig:
@@ -109,8 +109,8 @@ idea: _user_bin_add
 	    rm --force $(USER_WORKSPACE)/opt/idea.tar.gz && \
 	    ln --verbose --symbolic --force $(USER_WORKSPACE)/opt/*/bin/idea.sh $(HOME)/bin/idea.sh
 
-idea_clean: BASHRC_FILES="bin_bashrc"
-idea_clean: _clean_bashrc
+idea_clean: FILES="bin_bashrc"
+idea_clean: _clean_file
 	rm --recursive --force $(shell dirname $(shell dirname $(USER_WORKSPACE)/opt/*/bin/idea.sh))
 	rm --force $(HOME)/bin/idea.sh
 
