@@ -57,14 +57,10 @@ tmux_clean:
 	sed --in-place 's#^source-file ~/.tmux-import.conf$$##g' ~/.tmux.conf
 	rm --force ~/.tmux-import.conf
 
+tmux_solarized: USERNAME=altercation
 tmux_solarized:
-ifeq ($(USERNAME),)
-	wget --output-document ~/.tmux-solarized.conf --no-verbose \
-	    "https://raw.githubusercontent.com/seebi/tmux-colors-solarized/master/tmuxcolors-256.conf"
-else
 	wget --output-document ~/.tmux-solarized.conf --no-verbose \
 	    "https://raw.githubusercontent.com/$(USERNAME)/tmux-colors-solarized/master/tmuxcolors-256.conf"
-endif
 	echo "source-file ~/.tmux-solarized.conf" >> ~/.tmux.conf
 	echo "alias tmux=\"tmux -2\"" >> ~/.bashrc
 	@echo "Restart your tmux with 'tmux kill-server' to reload configuration"
