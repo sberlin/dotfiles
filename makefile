@@ -12,6 +12,7 @@ default: install
         idea idea_clean \
         unity_settings unity_settings_clean \
         vim vim_clean \
+        vim_solarized vim_solarized_clean \
         _user_bin_add _clean_file
 
 SHELL=/bin/bash
@@ -19,13 +20,13 @@ USER_WORKSPACE=/opt/workspace/$(shell id --user --name)
 
 install: server_install
 
-server_install: ssh tmux tmux_solarized complete_r gitconfig git_user_info vim
+server_install: ssh tmux tmux_solarized complete_r gitconfig git_user_info vim vim_solarized
 
 desktop_install: unity_settings idea
 
 clean: server_clean
 
-server_clean: ssh_clean tmux_clean tmux_solarized_clean complete_r_clean gitconfig_clean git_user_info_clean vim_clean
+server_clean: ssh_clean tmux_clean tmux_solarized_clean complete_r_clean gitconfig_clean git_user_info_clean vim_clean vim_solarized_clean
 
 desktop_clean: unity_settings_clean idea_clean
 
@@ -126,4 +127,15 @@ vim:
 
 vim_clean: FILES="vimrc"
 vim_clean: _clean_file
+
+vim_solarized: USERNAME=altercation
+vim_solarized:
+	mkdir --parents $(HOME)/.vim/colors
+	wget --output-document $(HOME)/.vim/colors/solarized.vim --no-verbose \
+	    "https://raw.githubusercontent.com/$(USERNAME)/vim-colors-solarized/master/colors/solarized.vim"
+	cat vimrc_solarized >> $(HOME)/.vimrc
+
+vim_solarized_clean: FILES="vimrc_solarized"
+vim_solarized_clean: _clean_file
+	rm --force $(HOME)/.vim/colors/solarized.vim
 
