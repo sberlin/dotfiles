@@ -11,6 +11,7 @@ default: install
         git_user_info git_user_info_clean \
         idea idea_clean \
         unity_settings unity_settings_clean \
+        vim vim_clean \
         _user_bin_add _clean_file
 
 SHELL=/bin/bash
@@ -18,13 +19,13 @@ USER_WORKSPACE=/opt/workspace/$(shell id --user --name)
 
 install: server_install
 
-server_install: ssh tmux tmux_solarized complete_r gitconfig git_user_info
+server_install: ssh tmux tmux_solarized complete_r gitconfig git_user_info vim
 
 desktop_install: unity_settings idea
 
 clean: server_clean
 
-server_clean: ssh_clean tmux_clean tmux_solarized_clean complete_r_clean gitconfig_clean git_user_info_clean
+server_clean: ssh_clean tmux_clean tmux_solarized_clean complete_r_clean gitconfig_clean git_user_info_clean vim_clean
 
 desktop_clean: unity_settings_clean idea_clean
 
@@ -119,4 +120,10 @@ unity_settings_clean:
 	command -v gsettings &> /dev/null || ( echo "Install gsettings first" && exit )
 	grep --extended-regexp --only-matching '^([^ ]+) ([^ ]+)' unity_settings | \
 	    xargs --verbose --no-run-if-empty --max-lines=1 gsettings reset
+
+vim:
+	cat vimrc >> $(HOME)/.vimrc
+
+vim_clean: FILES="vimrc"
+vim_clean: _clean_file
 
