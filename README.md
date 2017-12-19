@@ -1,17 +1,5 @@
 # Contents
-Each make target comes with a corresponding suffixed clean target, though cleaning your .bashrc is not automated yet.
-
-## Targets
-install/server_install:
-* [tmux](#tmux)
-* [tmux](#tmux-solarized)
-* [complete_r](#r-is-for-run)
-* [gitconfig](#gitconfig)
-* [git_user_info](#git-user-info)
-
-desktop_install:
-* [unity_settings](#unity-settings)
-* [idea](#intellij-idea)
+Each make target comes with a corresponding suffixed clean target, though purging entire block from files is not automated yet.
 
 ## tmux
 Different configurations to improve working with [tmux](https://tmux.github.io)
