@@ -3,6 +3,7 @@ default: install
 .PHONY: install clean \
         server_install server_clean \
         desktop_install desktop_clean \
+        bashrc bashrc_clean \
         ssh ssh_clean \
         tmux tmux_clean \
         tmux_solarized tmux_solarized_clean \
@@ -20,13 +21,13 @@ USER_WORKSPACE=/opt/workspace/$(shell id --user --name)
 
 install: server_install
 
-server_install: ssh tmux tmux_solarized complete_r gitconfig git_user_info vim vim_solarized
+server_install: bashrc ssh tmux tmux_solarized complete_r gitconfig git_user_info vim vim_solarized
 
 desktop_install: unity_settings idea
 
 clean: server_clean
 
-server_clean: ssh_clean tmux_clean tmux_solarized_clean complete_r_clean gitconfig_clean git_user_info_clean vim_clean vim_solarized_clean
+server_clean: bashrc_clean ssh_clean tmux_clean tmux_solarized_clean complete_r_clean gitconfig_clean git_user_info_clean vim_clean vim_solarized_clean
 
 desktop_clean: unity_settings_clean idea_clean
 
@@ -44,6 +45,12 @@ _clean_file:
 	@echo "---------------------------------------------------------"
 	@tail --verbose --lines=+1 -- $(FILES)
 	@echo "---------------------------------------------------------"
+
+bashrc:
+	cat bashrc >> $(HOME)/.bashrc
+
+bashrc_clean: FILES=bashrc
+bashrc_clean: _clean_file
 
 ssh:
 	ssh-keygen -q -t rsa -b 4096 -N "" -f ~/.ssh/id_rsa
