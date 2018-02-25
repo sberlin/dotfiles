@@ -1,32 +1,43 @@
-alias.amend='commit --amend'
-alias.br='branch'
-alias.ci='commit'
-alias.co='checkout'
-alias.coff='!git checkout $1 && git merge --ff-only @{u}'
-alias.cp='cherry-pick'
-alias.dc='diff --cached'
-alias.d='diff'
-alias.deco='log --decorate --graph --format=fuller --all --simplify-by-decoration'
-alias.f='fetch'
-alias.ff='merge --ff-only'
-alias.ignored='!git ls-files -v | grep "^[[:lower:]]"'
-alias.ignore='update-index --assume-unchanged'
-alias.la='log --decorate --graph --format=fuller --all'
-alias.lapu='log --decorate --graph --format=fuller --all --not --remotes'
-alias.last='log --decorate --graph --format=fuller --all --name-status'
-alias.l='log --decorate --graph --format=fuller'
-alias.lm='log --decorate --graph --format=fuller --date-order --first-parent'
-alias.lst='log --decorate --graph --format=fuller --name-status'
-alias.patch='format-patch -1 --stdout'
-alias.rh='reset --hard'
-alias.st='status'
-alias.unignore='update-index --no-assume-unchanged'
-color.ui='always'
-core.autocrlf='input'
-core.editor='vim'
-core.pager='less -r'
-i18n.commitencoding='utf8'
-merge.tool='meld'
-mergetool.meld.cmd='meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"'
-push.default='simple'
-rebase.autosquash='true'
+[alias]
+	amend = commit --amend
+	br = branch
+	ci = commit
+	co = checkout
+	coff = !git checkout $1 && git merge --ff-only @{u}
+	cp = cherry-pick
+	dc = diff --cached
+	d = diff
+	deco = log --decorate --graph --format=fuller --all --simplify-by-decoration
+	f = fetch
+	ff = merge --ff-only
+	ignored = !git ls-files -v | grep \"^[[:lower:]]\"
+	ignore = update-index --assume-unchanged
+	la = log --decorate --graph --format=fuller --all
+	lapu = log --decorate --graph --format=fuller --all --not --remotes
+	last = log --decorate --graph --format=fuller --all --name-status
+	l = log --decorate --graph --format=fuller
+	lst = log --decorate --graph --format=fuller --name-status
+	patch = format-patch -1 --stdout
+	rh = reset --hard
+	st = status
+	unignore = update-index --no-assume-unchanged
+	lm = log --decorate --graph --format=fuller --date-order --first-parent
+[color]
+	ui = always
+[core]
+	autocrlf = input
+	editor = vim
+	pager = less -r
+[i18n]
+	commitencoding = utf8
+[merge]
+	tool = meld
+[mergetool "meld"]
+	cmd = meld \"$LOCAL\" \"$MERGED\" \"$REMOTE\" --output \"$MERGED\"
+[push]
+	default = simple
+[rebase]
+	autosquash = true
+[user]
+	name = sberlin
+	email = sberlin@users.noreply.github.com
