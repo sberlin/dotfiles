@@ -1,5 +1,0 @@
-org.gnome.desktop.wm.preferences titlebar-font 'Ubuntu Bold 9'
-org.gnome.desktop.interface monospace-font-name 'Ubuntu Mono 11'
-org.gnome.desktop.interface font-name 'Ubuntu 10'
-org.gnome.desktop.interface document-font-name 'Sans 10'
-com.canonical.Unity.Launcher favorites "['application://org.gnome.Nautilus.desktop', 'application://firefox.desktop', 'application://org.gnome.gedit.desktop', 'application://org.gnome.Terminal.desktop', 'unity://running-apps', 'application://unity-control-center.desktop', 'application://unity-tweak-tool.desktop', 'unity://expo-icon', 'unity://devices']"
