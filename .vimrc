@@ -17,5 +17,6 @@ set smarttab
 set softtabstop=4
 
 highlight ExtraWhitespace ctermbg=red guibg=red
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
 
