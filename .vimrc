@@ -21,3 +21,9 @@ highlight ExtraWhitespace ctermbg=red guibg=red
 autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
 
+augroup vimrc_autocmds
+au!
+  autocmd BufRead * highlight OverLength ctermbg=black guibg=black
+  autocmd BufRead * match OverLength /\%81v/
+augroup END
+
