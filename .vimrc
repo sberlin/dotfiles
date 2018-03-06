@@ -1,6 +1,7 @@
 set number
 set showbreak=+++
 set textwidth=80
+set formatoptions-=t
 set showmatch
 set visualbell
 
