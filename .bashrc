@@ -1,6 +1,7 @@
 #!/bin/bash
 
 export HISTCONTROL=ignoredups:erasedups
+export HISTTIMEFORMAT="%Y-%m-%d %T %z "
 export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -n"
 export CDPATH=.:..
 
