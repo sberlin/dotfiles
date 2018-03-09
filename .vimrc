@@ -17,9 +17,11 @@ set smartindent
 set smarttab
 set softtabstop=4
 
-highlight ExtraWhitespace ctermbg=red guibg=red
-autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$/
+augroup ExtraWhitespace_cmd
+  autocmd!
+  autocmd BufWinEnter * highlight ExtraWhitespace ctermbg=red guibg=red
+  autocmd BufWinEnter * call matchadd('ExtraWhitespace', '\s\+$')
+augroup END
 
 augroup vimrc_autocmds
 au!
