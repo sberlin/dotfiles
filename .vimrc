@@ -23,9 +23,9 @@ augroup ExtraWhitespace_cmd
   autocmd BufWinEnter * call matchadd('ExtraWhitespace', '\s\+$')
 augroup END
 
-augroup vimrc_autocmds
-au!
-  autocmd BufRead * highlight OverLength ctermbg=black guibg=black
-  autocmd BufRead * match OverLength /\%81v/
+augroup OverLength_cmd
+  autocmd!
+  autocmd BufWinEnter * highlight OverLength ctermbg=black guibg=black
+  autocmd BufWinEnter * call matchadd('OverLength', '\%81v')
 augroup END
 
