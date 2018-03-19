@@ -18,4 +18,6 @@ bindkey "^[[1~" beginning-of-line
 bindkey "^[[4~" end-of-line
 bindkey "^[[2~" quoted-insert
 bindkey "^[[3~" delete-char
+setopt hist_ignore_dups
+alias h='history -f -999999 | less'
 
