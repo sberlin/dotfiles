@@ -21,3 +21,12 @@ bindkey "^[[3~" delete-char
 setopt hist_ignore_dups
 alias h='history -f -999999 | less'
 
+# Run applications in background and detach them completely
+r()
+{
+    nohup "$@" >/dev/null 2>&1 &
+}
+
+# Completion for nohup-wrapper r
+compdef _command_names r
+
