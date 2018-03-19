@@ -8,7 +8,7 @@ export CDPATH=.:..
 shopt -s histappend
 shopt -s extglob
 
-export PS1='\[\033[0;35m\]\t \[\033[0;32m\]\u\[\033[0m\]@\[\033[0;34m\]\h\[\033[0m\]:\[\033[0;33m\]\w\[\033[1;31m\]$(__git_ps1 " (%s)" 2>/dev/null) \[\033[0;31m\]\\$\[$(tput sgr0)\] '
+export PS1='\[\033[0;35m\]\t \[\033[0;32m\]\u\[\033[0m\]@\[\033[0;34m\]\h\[\033[0m\]:\[\033[0;33m\]\w \[\033[0;31m\]\\$\[$(tput sgr0)\] '
 
 # Run applications in background and detach them completely
 r()
