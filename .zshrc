@@ -30,3 +30,18 @@ r()
 # Completion for nohup-wrapper r
 compdef _command_names r
 
+# oh-my-zsh
+export ZSH=~/git/oh-my-zsh
+ZSH_THEME="agnoster"
+plugins=(
+  common-aliases
+  docker
+  docker-compose
+  fedora
+  git
+  gradle
+  mvn
+  systemd
+)
+source $ZSH/oh-my-zsh.sh
+
