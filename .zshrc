@@ -28,6 +28,7 @@ r()
 
 # Completion for nohup-wrapper r
 compdef _command_names r
+zstyle ':completion:*' special-dirs true
 
 # oh-my-zsh
 export ZSH=~/git/oh-my-zsh
