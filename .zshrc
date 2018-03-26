@@ -45,3 +45,5 @@ plugins=(
 )
 source $ZSH/oh-my-zsh.sh
 
+export LESS='-R -F'
+
