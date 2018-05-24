@@ -2,6 +2,7 @@
 	amend = commit --amend
 	br = branch
 	ci = commit
+    cm = "!f() { git commit -m \"$(git symbolic-ref HEAD | grep --color=never -Po '(?<=/)[^/]*$') $@\"; }; f"
 	co = checkout
 	coff = !git checkout $1 && git merge --ff-only @{u}
 	cp = cherry-pick
