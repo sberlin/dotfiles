@@ -2,7 +2,7 @@
 HISTFILE=~/.histfile
 HISTSIZE=999999
 SAVEHIST=999999
-setopt appendhistory autocd extendedglob notify
+setopt appendhistory hist_ignore_dups share_history autocd extendedglob notify
 unsetopt beep nomatch
 bindkey -e
 # End of lines configured by zsh-newuser-install
@@ -13,12 +13,6 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-# /etc/inputrc
-bindkey "^[[1~" beginning-of-line
-bindkey "^[[4~" end-of-line
-bindkey "^[[2~" quoted-insert
-bindkey "^[[3~" delete-char
-setopt hist_ignore_dups share_history
 
 # Run applications in background and detach them completely
 r()
@@ -42,8 +36,22 @@ plugins=(
   gradle
   mvn
   systemd
+  vi-mode
 )
 source $ZSH/oh-my-zsh.sh
 
+# /etc/inputrc
+bindkey "^[[1~" beginning-of-line
+bindkey "^[[4~" end-of-line
+bindkey "^[[2~" quoted-insert
+bindkey "^[[3~" delete-char
+bindkey "^[OA" up-line-or-beginning-search
+bindkey "^[OB" down-line-or-beginning-search
+bindkey "^U" kill-whole-line
+bindkey "^Y" vi-put-after
+bindkey "^[." insert-last-word
+bindkey "^@" vi-cmd-mode
+
 export LESS='-R -F'
+export KEYTIMEOUT=1
 
