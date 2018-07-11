@@ -2,7 +2,7 @@
 HISTFILE=~/.histfile
 HISTSIZE=999999
 SAVEHIST=999999
-setopt appendhistory hist_ignore_dups share_history autocd extendedglob notify
+setopt appendhistory hist_ignore_dups share_history autocd extendedglob notify hist_ignore_space
 unsetopt beep nomatch
 bindkey -e
 # End of lines configured by zsh-newuser-install
