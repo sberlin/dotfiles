@@ -55,3 +55,5 @@ bindkey "^@" vi-cmd-mode
 export LESS='-R -F'
 export KEYTIMEOUT=1
 
+alias autocomplete="compdef _gnu_generic $@"
+
