@@ -2,7 +2,7 @@
 	amend = commit --amend
 	br = branch
 	ci = commit
-    cm = "!f() { git commit -m \"$(git symbolic-ref HEAD | grep --color=never -Po '(?<=/)[^/]*$') $@\"; }; f"
+	cm = "!f() { git commit -m \"$(git symbolic-ref HEAD | grep --color=never -Po '(?<=/)[^/]*$') $@\"; }; f"
 	co = checkout
 	coff = !git checkout $1 && git merge --ff-only @{u}
 	cp = cherry-pick
@@ -11,18 +11,20 @@
 	deco = log --decorate --graph --format=fuller --all --simplify-by-decoration
 	f = fetch
 	ff = merge --ff-only
+	fix = commit --fixup
 	ignored = !git ls-files -v | grep \"^[[:lower:]]\"
 	ignore = update-index --assume-unchanged
 	la = log --decorate --graph --format=fuller --all
 	lapu = log --decorate --graph --format=fuller --all --not --remotes
 	last = log --decorate --graph --format=fuller --all --name-status
 	l = log --decorate --graph --format=fuller
+	lm = log --decorate --graph --format=fuller --date-order --first-parent
 	lst = log --decorate --graph --format=fuller --name-status
 	patch = format-patch -1 --stdout
+	rbdev = !git checkout develop && git merge --ff-only @{u} && git checkout - && git rebase develop
 	rh = reset --hard
 	st = status
 	unignore = update-index --no-assume-unchanged
-	lm = log --decorate --graph --format=fuller --date-order --first-parent
 [color]
 	ui = always
 [core]
