@@ -12,6 +12,7 @@
 	f = fetch
 	ff = merge --ff-only
 	fix = commit --fixup
+	getignore = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"
 	ignored = !git ls-files -v | grep \"^[[:lower:]]\"
 	ignore = update-index --assume-unchanged
 	la = log --decorate --graph --format=fuller --all
