@@ -32,6 +32,7 @@ plugins=(
   docker
   docker-compose
   fedora
+  firewalld
   git
   gradle
   mvn
