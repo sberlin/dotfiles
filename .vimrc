@@ -1,4 +1,5 @@
 set number
+set relativenumber
 set showbreak=+++
 set textwidth=80
 set formatoptions-=t
