@@ -35,6 +35,7 @@ plugins=(
   git
   gradle
   mvn
+  oc
   systemd
   vi-mode
 )
