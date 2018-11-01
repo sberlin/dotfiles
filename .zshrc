@@ -59,4 +59,5 @@ export KEYTIMEOUT=1
 
 alias autocomplete="compdef _gnu_generic $@"
 alias h="fc -li 0 | ${PAGER:-less} ${LESS:--R} +G"
+alias timestamp="date --iso-8601=seconds | tr ' :+' '-'"
 
