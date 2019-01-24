@@ -23,6 +23,7 @@
 	lst = log --decorate --graph --format=fuller --name-status
 	patch = format-patch -1 --stdout
 	rbdev = !git checkout develop && git merge --ff-only @{u} && git checkout - && git rebase develop
+	rmi = "!f() { git ls-files --others --exclude-standard $@ | xargs --interactive --replace={} rm {}; }; f"
 	rh = reset --hard
 	st = status
 	unignore = update-index --no-assume-unchanged
