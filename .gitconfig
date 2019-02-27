@@ -10,6 +10,7 @@
 	d = diff
 	deco = log --decorate --graph --format=fuller --all --simplify-by-decoration
 	f = fetch
+	fa = fetch --all
 	ff = merge --ff-only
 	fix = commit --fixup
 	getignore = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"
