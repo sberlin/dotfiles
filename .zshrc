@@ -38,6 +38,7 @@ plugins=(
   mvn
   oc
   systemd
+  vagrant
   vi-mode
 )
 source $ZSH/oh-my-zsh.sh
