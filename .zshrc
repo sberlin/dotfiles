@@ -63,6 +63,9 @@ alias h="fc -li 0 | ${PAGER:-less} ${LESS:--R} +G"
 alias timestamp="date --iso-8601=seconds | tr ' :+' '-'"
 alias -g S="| less ${LESS:--R} -S"
 
+pandoc() { docker run --rm -v "$PWD":/data pandoc/core --standalone ${@}; }
+pandoc-completion() { . <(pandoc --bash-completion); }
+
 trigger() {
     while true; do
         inotifywait -e modify "${1}"
