@@ -12,7 +12,7 @@ zstyle :compinstall filename "/home/$(id --user --name)/.zshrc"
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
-
+autoload -U +X bashcompinit && bashcompinit
 
 # Run applications in background and detach them completely
 r()
