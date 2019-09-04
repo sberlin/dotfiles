@@ -41,7 +41,7 @@
 [mergetool "meld"]
 	cmd = meld \"$LOCAL\" \"$MERGED\" \"$REMOTE\" --output \"$MERGED\"
 [push]
-	default = simple
+	default = current
 [rebase]
 	autosquash = true
 [user]
