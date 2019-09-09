@@ -9,8 +9,8 @@
 	dc = diff --cached
 	d = diff
 	deco = log --decorate --graph --format=fuller --all --simplify-by-decoration
-	f = fetch
 	fa = fetch --all
+	f = fetch
 	ff = merge --ff-only
 	fix = commit --fixup
 	getignore = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"
@@ -24,8 +24,9 @@
 	lst = log --decorate --graph --format=fuller --name-status
 	patch = format-patch -1 --stdout
 	rbdev = !git checkout develop && git merge --ff-only @{u} && git checkout - && git rebase develop
-	rmi = "!f() { git ls-files --others --exclude-standard $@ | xargs --interactive --replace={} rm {}; }; f"
+    rbi = rebase -i
 	rh = reset --hard
+	rmi = "!f() { git ls-files --others --exclude-standard $@ | xargs --interactive --replace={} rm {}; }; f"
 	st = status
 	unignore = update-index --no-assume-unchanged
 [color]
