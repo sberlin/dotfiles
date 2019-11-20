@@ -1,6 +1,7 @@
 [alias]
 	amend = commit --amend
 	br = branch
+    brp = "!f() { git fetch --prune && git branch --no-color --verbose | grep --color=never '\\[gone\\]' | cut -f3 -d' ' | xargs -pr git branch -D; }; f"
 	ci = commit
 	cm = "!f() { ISSUE="$(git symbolic-ref HEAD | grep --color=never -Po '(?<=/)\\w+-\\d+(?=-)')"; git commit -m \"${ISSUE:+${ISSUE} }${@}\"; }; f"
 	co = checkout
