@@ -82,3 +82,9 @@ trigger() {
     done;
 }
 
+_git_current_branch() {
+    export HEAD="$(git symbolic-ref --short HEAD)";
+}
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd _git_current_branch
+
