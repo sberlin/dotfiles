@@ -88,3 +88,12 @@ _git_current_branch() {
 autoload -Uz add-zsh-hook
 add-zsh-hook precmd _git_current_branch
 
+serve() {
+    local destination="$(realpath ${1:-${PWD}})"
+    local port="${2:-8080}"
+    local name="serve-$(sha1hmac <<< "${destination}" | cut -d' ' -f1)"
+    docker run --name "${name}" -d --rm -p "${port}":8080 -v "${destination}:/app:ro" -u "$(id -u):0" bitnami/nginx:latest
+    xdg-open http://localhost:"${port}"/
+    docker attach "${name}"
+}
+
