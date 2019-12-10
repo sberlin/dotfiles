@@ -26,7 +26,8 @@
 	lst = log --decorate --graph --format=fuller --name-status
 	patch = format-patch -1 --stdout
 	rbdev = !git checkout develop && git merge --ff-only @{u} && git checkout - && git rebase develop
-    rbi = rebase -i
+    rbi = "!f() { git stash push -k -m 'TMP rebase -i'; git rebase -i "${@}"; git stash list | grep -s ': TMP rebase -i' && git stash pop || true; }; f"
+    rb = rebase
 	rh = reset --hard
 	rmi = "!f() { git ls-files --others --exclude-standard $@ | xargs --interactive --replace={} rm {}; }; f"
 	st = status
