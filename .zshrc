@@ -54,8 +54,8 @@ bindkey "^U" kill-whole-line
 bindkey "^Y" vi-put-after
 bindkey "^[." insert-last-word
 bindkey "^@" vi-cmd-mode
-bindkey "^[f" forward-word
-bindkey "^[b" backward-word
+bindkey "^[f" vi-forward-blank-word
+bindkey "^[b" vi-backward-blank-word
 
 export LESS='-R -F'
 export KEYTIMEOUT=1
