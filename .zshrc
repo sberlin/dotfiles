@@ -57,6 +57,7 @@ bindkey "^@" vi-cmd-mode
 bindkey "^[f" vi-forward-blank-word
 bindkey "^[b" vi-backward-blank-word
 
+export EDITOR=vim
 export LESS='-R -F'
 export KEYTIMEOUT=1
 
