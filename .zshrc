@@ -98,3 +98,7 @@ serve() {
     docker attach "${name}"
 }
 
+ascii() {
+    curl https://artii.herokuapp.com/make?text=$1 | sed 's/ *$//g'
+}
+
