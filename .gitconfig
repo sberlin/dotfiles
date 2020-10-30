@@ -14,6 +14,7 @@
 	fa = fetch --all
 	f = fetch
 	ff = merge --ff-only
+	fff = "!f() { git fetch && git merge --ff-only; }; f"
     fixa = "!f() { set -ex; FILE=$(git status --short --porcelain=v2 | head -1 | cut -f9 -d ' ' | xargs echo); LINE=$(git -c color.ui=never diff --cached --unified=0 | grep -Po '(?<=@@ -)\\d+' | head -1 | xargs echo); COMMIT=$(git blame -lws -L "${LINE}",+1 HEAD -- "${FILE}" | grep -Po '[a-f0-9]{40}' | xargs echo); git diff --cached; echo "The identified commit is:"; git show --quiet --format=fuller "${COMMIT}"; read -p 'Fix this commit automatically? (y/n) ' yn; test "${yn:-n}" == "y" && (git commit --fixup "${COMMIT}" && git stash push -k -m 'TMP commit --fix' && git rebase -i "${COMMIT}"^; git stash list | grep -s ': TMP commit --fix' && git stash pop || true;) || echo 'Aborted'; }; f"
 	fix = commit --fixup
 	getignore = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"
