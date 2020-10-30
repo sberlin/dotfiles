@@ -1,5 +1,6 @@
 [alias]
 	amend = commit --amend
+    ap = add --patch
 	br = branch
     brp = "!f() { git fetch --prune && git branch --no-color --verbose | grep --color=never '\\[gone\\]' | cut -f3 -d' ' | xargs -pr git branch -D; git branch --no-color | grep --color=never -v '^* ' | xargs -pr -I{} git branch -D {}; }; f"
 	ci = commit
@@ -25,6 +26,7 @@
 	lm = log --decorate --graph --format=fuller --date-order --first-parent
 	lst = log --decorate --graph --format=fuller --name-status
 	patch = format-patch -1 --stdout
+    rbc = rebase --continue
 	rbdev = !git checkout develop && git merge --ff-only @{u} && git checkout - && git rebase develop
     rbi = "!f() { git stash push -k -m 'TMP rebase -i'; git rebase -i "${@}"; git stash list | grep -s ': TMP rebase -i' && git stash pop || true; }; f"
     rb = rebase
