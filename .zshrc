@@ -78,7 +78,7 @@ complete -o filenames -o bashdefault -F _pandoc pandoc-css
 
 trigger() {
     while true; do
-        inotifywait -e modify "${1}"
+        inotifywait -r -e modify "${1}"
         eval "${@:2}"
     done;
 }
