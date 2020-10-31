@@ -36,7 +36,6 @@ plugins=(
   git
   gradle
   mvn
-  oc
   systemd
   vagrant
   vi-mode
