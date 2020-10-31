@@ -31,7 +31,7 @@ plugins=(
   common-aliases
   docker
   docker-compose
-  fedora
+  dnf
   firewalld
   git
   gradle
