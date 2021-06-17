@@ -33,6 +33,7 @@ plugins=(
   firewalld
   git
   gradle
+  kubectl
   mvn
   systemd
   vagrant
