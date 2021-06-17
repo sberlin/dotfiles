@@ -1,6 +1,7 @@
 [alias]
 	amend = commit --amend
     ap = add --patch
+	ac = "!f() { ISSUE="$(git symbolic-ref HEAD | grep --color=never -Po '(?<=/)\\w+-\\d+(?=[-_])')"; git commit -m \"${ISSUE:+${ISSUE} }${@}\"; }; git add --patch; f"
 	br = branch
     brp = "!f() { git fetch --prune && git branch --no-color --verbose | grep --color=never '\\[gone\\]' | cut -f3 -d' ' | xargs -pr git branch -D; git branch --no-color | grep --color=never -v '^* ' | xargs -pr -I{} git branch -D {}; }; f"
 	ci = commit
@@ -8,6 +9,7 @@
 	co = checkout
 	coff = !git checkout $1 && git merge --ff-only @{u}
 	cp = cherry-pick
+	cr = commit -m 'fixup! to be reverted'
 	dc = diff --cached
 	d = diff
 	deco = log --decorate --graph --format=fuller --all --simplify-by-decoration
@@ -25,6 +27,7 @@
 	last = log --decorate --graph --format=fuller --all --name-status
 	l = log --decorate --graph --format=fuller
 	lm = log --decorate --graph --format=fuller --date-order --first-parent
+	lp = log --decorate --graph --format=fuller --patch
 	lst = log --decorate --graph --format=fuller --name-status
 	patch = format-patch -1 --stdout
     rbc = rebase --continue
