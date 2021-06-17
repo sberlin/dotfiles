@@ -32,6 +32,6 @@ augroup END
 augroup OverLength_cmd
   autocmd!
   autocmd BufWinEnter * highlight OverLength ctermbg=black guibg=black
-  autocmd BufWinEnter * call matchadd('OverLength', '\%81v')
+  autocmd BufWinEnter * call matchadd('OverLength', '\%101v')
 augroup END
 
