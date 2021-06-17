@@ -49,11 +49,14 @@ bindkey "^[[3~" delete-char
 bindkey "^[OA" up-line-or-beginning-search
 bindkey "^[OB" down-line-or-beginning-search
 bindkey "^U" kill-whole-line
-bindkey "^Y" vi-put-after
+bindkey "^Y" yank
 bindkey "^[." insert-last-word
 bindkey "^@" vi-cmd-mode
 bindkey "^[f" vi-forward-blank-word
+bindkey "^[F" vi-forward-word
 bindkey "^[b" vi-backward-blank-word
+bindkey "^[B" vi-backward-word
+bindkey -M vicmd v edit-command-line
 
 export EDITOR=vim
 export LESS='-R -F'
