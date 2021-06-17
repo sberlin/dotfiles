@@ -29,8 +29,6 @@ export ZSH=~/git/oh-my-zsh
 ZSH_THEME="agnoster"
 plugins=(
   common-aliases
-  docker
-  docker-compose
   dnf
   firewalld
   git
