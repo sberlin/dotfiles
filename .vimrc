@@ -35,3 +35,6 @@ augroup OverLength_cmd
   autocmd BufWinEnter * call matchadd('OverLength', '\%101v')
 augroup END
 
+:nnoremap <Tab> :bnext<CR>
+:nnoremap <S-Tab> :bprevious<CR>
+
