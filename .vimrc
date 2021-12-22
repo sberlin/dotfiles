@@ -18,6 +18,7 @@ set smartindent
 set smarttab
 set tabstop=4
 set nofixendofline
+set pastetoggle=<C-p>
 let g:netrw_liststyle=3
 let g:netrw_altv=1
 let g:netrw_winsize=-30
