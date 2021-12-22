@@ -74,7 +74,7 @@ pandoc-completion() { . <(pandoc --bash-completion); }
 pandoc-css() {
     PANDOC_CSS=~/.pandoc.css.html
     test -f "${PANDOC_CSS}" || curl -fsSL "https://gist.githubusercontent.com/sberlin/e0600b5a85c7adb83df37539dc402bd9/raw/235844b8a49786b89b9bd5c22ebc2d670e941a66/github-pandoc.css.html" > "${PANDOC_CSS}"
-    docker run --rm -v "$PWD":/data -v "${PANDOC_CSS}":/pandoc.css.html:ro pandoc/core \
+    docker run --rm -v "$PWD":/data:z -v "${PANDOC_CSS}":/pandoc.css.html:ro,z pandoc/core \
         --standalone --include-in-header "/pandoc.css.html" ${@}
 }
 complete -o filenames -o bashdefault -F _pandoc pandoc-css
