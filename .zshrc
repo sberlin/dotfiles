@@ -38,6 +38,7 @@ plugins=(
   systemd
   vagrant
   vi-mode
+  zsh-autosuggestions
 )
 source $ZSH/oh-my-zsh.sh
 
@@ -61,6 +62,7 @@ bindkey -M vicmd v edit-command-line
 export EDITOR=vim
 export LESS='-R -F'
 export KEYTIMEOUT=1
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=242"
 
 alias autocomplete="compdef _gnu_generic $@"
 alias h="fc -li 0 | ${PAGER:-less} ${LESS:--R} +G"
