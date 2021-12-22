@@ -1,7 +1,7 @@
 set number
 set relativenumber
 set showbreak=+++
-set textwidth=80
+set textwidth=100
 set formatoptions-=t
 set showmatch
 set visualbell
