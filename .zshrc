@@ -112,3 +112,4 @@ ascii() {
     curl https://artii.herokuapp.com/make?text=$1 | sed 's/ *$//g'
 }
 
+alias grepex="grep --exclude-dir=node_modules --exclude-dir=target --exclude-dir=.git"
