@@ -1,5 +1,5 @@
 [alias]
-	amend = commit --amend
+	amend = commit --amend --no-edit
     ap = add --patch
 	ac = "!f() { ISSUE="$(git symbolic-ref HEAD | grep --color=never -Po '(?<=/)\\w+-\\d+(?=[-_])')"; git commit -m \"${ISSUE:+${ISSUE} }${@}\"; }; git add --patch; f"
 	br = branch
