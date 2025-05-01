@@ -39,6 +39,7 @@ plugins=(
   vagrant
   vi-mode
   zsh-autosuggestions
+  fzf-zsh-plugin
 )
 source $ZSH/oh-my-zsh.sh
 
@@ -69,11 +70,11 @@ alias h="fc -li 0 | ${PAGER:-less} ${LESS:--R} +G"
 alias timestamp="date --iso-8601=seconds | tr ' :+' '-'"
 alias -g S="| less ${LESS:--R} -S"
 
-pandoc() { docker run --rm -v "$PWD":/data pandoc/core --standalone ${@}; }
+pandoc() { docker run --rm -v "$PWD":/data:z pandoc/core --standalone ${@}; }
 pandoc-completion() { . <(pandoc --bash-completion); }
 pandoc-css() {
     PANDOC_CSS=~/.pandoc.css.html
-    test -f "${PANDOC_CSS}" || curl -fsSL "https://gist.githubusercontent.com/sberlin/e0600b5a85c7adb83df37539dc402bd9/raw/235844b8a49786b89b9bd5c22ebc2d670e941a66/github-pandoc.css.html" > "${PANDOC_CSS}"
+    test -f "${PANDOC_CSS}" || curl -fsSL "https://gist.githubusercontent.com/sberlin/e0600b5a85c7adb83df37539dc402bd9/raw/3a7c3a9058ccf7819292ced45be991ac2eaa3e1a/github-pandoc.css.html" > "${PANDOC_CSS}"
     docker run --rm -v "$PWD":/data:z -v "${PANDOC_CSS}":/pandoc.css.html:ro,z pandoc/core \
         --standalone --include-in-header "/pandoc.css.html" ${@}
 }
@@ -103,6 +104,7 @@ serve() {
 
 try() {
     while :; do
+        date +"%Y-%m-%d_%H-%M-%S"
         eval ${@[2,-1]}
         sleep ${@[1]}
     done
@@ -112,4 +114,24 @@ ascii() {
     curl https://artii.herokuapp.com/make?text=$1 | sed 's/ *$//g'
 }
 
-alias grepex="grep --exclude-dir=node_modules --exclude-dir=target --exclude-dir=.git"
+center() {
+    sudo nsenter --net --uts --ipc --target "$(docker inspect --format {{.State.Pid}} $1)" ${@[2,-1]}
+}
+
+alias grepex="grep --recursive --exclude-dir=node_modules --exclude-dir=target --exclude-dir=.git --exclude-dir=.terraform"
+
+sops() {
+    docker run -it --rm -v "$PWD":/app:z -w /app -v "$HOME/.gnupg:/etc/gnupg:z" -e GNUPGHOME=/etc/gnupg --userns=keep-id ghcr.io/getsops/sops:v3.8.1 $@
+}
+
+dockerize() {
+    alias "$1"="docker run -it --rm -v "\$PWD":/app:z -w /app $2 $1 ${@[3,-1]} "
+}
+
+dockerize pwsh powershell
+
+alias datestr="date +'%Y-%m-%d_%H-%M-%S'"
+
+ddg() {
+    xdg-open "https://duckduckgo.com/?q=${@[@]}"
+}

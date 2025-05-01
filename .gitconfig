@@ -1,9 +1,10 @@
 [alias]
-	amend = commit --amend --no-edit
     ap = add --patch
 	ac = "!f() { ISSUE="$(git symbolic-ref HEAD | grep --color=never -Po '(?<=/)\\w+-\\d+(?=[-_])')"; git commit -m \"${ISSUE:+${ISSUE} }${@}\"; }; git add --patch; f"
 	br = branch
     brp = "!f() { git fetch --prune && git branch --no-color --verbose | grep --color=never '\\[gone\\]' | cut -f3 -d' ' | xargs -pr git branch -D; git branch --no-color | grep --color=never -v '^* ' | xargs -pr -I{} git branch -D {}; }; f"
+	ca = commit --amend --no-edit
+	cam = commit --amend
 	ci = commit
 	cm = "!f() { ISSUE="$(git symbolic-ref HEAD | grep --color=never -Po '(?<=/)\\w+-\\d+(?=[-_])')"; git commit -m \"${ISSUE:+${ISSUE} }${@}\"; }; f"
 	co = checkout
@@ -32,7 +33,7 @@
 	patch = format-patch -1 --stdout
     rbc = rebase --continue
     rbdev = "!f() { git stash push -k -m 'TMP rebase -i'; git checkout develop && git merge --ff-only @{u} && git checkout - && git rebase develop; git stash list | grep -s ': TMP rebase -i' && git stash pop || true; }; f"
-    rbi = "!f() { git stash push -k -m 'TMP rebase -i'; git rebase -i "${@}"; git stash list | grep -s ': TMP rebase -i' && git stash pop || true; }; f"
+    rbi = "!f() { git stash push -k -m 'TMP rebase -i'; git rebase -i "${@:-origin/$HEAD}"; git stash list | grep -s ': TMP rebase -i' && git stash pop || true; }; f"
     rb = rebase
 	rh = reset --hard
 	rmi = "!f() { git ls-files --others --exclude-standard $@ | xargs --interactive --replace={} rm {}; }; f"
@@ -43,7 +44,8 @@
 [core]
 	autocrlf = input
 	editor = vim
-	pager = less -r
+[pager]
+    status = true
 [i18n]
 	commitencoding = utf8
 [merge]
